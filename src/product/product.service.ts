@@ -14,7 +14,7 @@ export class ProductService {
     }
 
     async getProducts(): Promise<Product[]> {
-        const products = await this.productModel.find();
+        const products = await this.productModel.find().sort( { createdAt: -1 } );
         return products;
     }
 
@@ -28,7 +28,7 @@ export class ProductService {
         return await product. save();
     }
 
-    async deleteProduct(productID: string): Promise<Product> {
+    async deleteProduct(productID: string): Promise<any> {
         const deletedProduct = await this.productModel.findByIdAndDelete(productID);
         return deletedProduct;
     }
